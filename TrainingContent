@@ -1,0 +1,519 @@
+The Training Content has been added here,
+
+Task 1
+
+Install GIT on the system.
+
+Remember to use sudo to elevate permission while installing.
+
+ 
+
+Refer to the GIT installation documentation here: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+
+
+
+verify if git instaled
+
+$ git --version 
+
+if Git not installed then install using the command
+
+$ sudo apt-get update
+
+$ sudo apt-get install git-all -y 
+
+
+
+Create a user called sarah
+
+sudo useradd -m -s /bin/bash sarah
+
+sudo passwd sarah
+
+provide the password for sarah user'
+
+sudo usermod -aG docker sarah
+
+login to the VM using the new sarah account and do the next steps
+
+ 
+
+Task 2
+
+ 
+
+Identify the version of git you just installed.
+
+ git --version
+
+Task 3
+
+We will learn more about working with different git commands throughout this course. But let's see if you can figure some stuff out using the git help command.
+
+ 
+
+Task 4
+
+What's the git command used to Show various types of objects?
+
+ git show
+
+Task 5
+
+What's the git command used to List, create, or delete branches?
+
+ git branch
+
+Task 6
+
+What's the git command used to Download objects from another repository?
+
+ git fetch
+
+Task 7
+
+What's the git command used to start a working area?
+
+ git init
+
+Task 8
+
+You may view additional help on each command following the syntax git help <command>. For this you must first install git man pages using the command sudo apt-get install git-man
+
+ 
+
+Once done use the help of the init command with the command git help init and identify the option used to create a bare repository.
+
+ 
+
+We will learn about initializing a repository later in this course.
+
+ 
+
+ 
+
+Lab 2
+
+ 
+
+Task 1
+
+ 
+
+What is the command to initialize a git repository?
+
+git init
+
+ 
+
+Task 2
+
+ 
+
+Initialize a git repository at /home/sarah/story-blog
+
+ 
+
+Create directory if it doesn't already exist.
+
+ 
+
+mkdir -p /home/sarah/story-blog
+
+cd story-blog
+
+git init
+
+ 
+
+Task 3
+
+Which hidden folder gets created after initializing a git repository?
+
+Explore the repository created in the previous step
+
+.git
+
+ 
+
+Task 4
+
+Let's test some of the concepts we learned so far in our lectures.
+
+Once a git repository has been initialized, which stage contains the active changes in your local git repository?
+
+working area
+
+ 
+
+Task 5
+
+Let’s add a file to our project inside /home/sarah/story-blog
+
+File name: lion-and-mouse.txt
+
+File content: A Lion lay asleep in the forest
+
+echo "A Lion lay asleep in the forest" >lion-and-mouse.txt
+
+ 
+
+Task 6
+
+Which stage contains new changes that will soon be committed to local git repo ?
+
+Staging area
+
+ 
+
+Now that we've added a text file, let's see if git detected the change we made. Although we haven't done anything with git yet, we initialized a git repository in this project, so git is aware of all our files and changes.
+
+You can see the status of git by executing the git status command.
+
+Answer next few questions based on the git status command output.
+
+git status
+
+ 
+
+What's the status of the lion-and-mouse.txt file in the repository?
+
+untracked
+
+ 
+
+Which area of the local git repository is the lion-and-mouse.txt file in ?
+
+ 
+
+Stage the file lion-and-mouse.txt to make it available for commit.
+
+git add lion-and-mouse.txt
+
+ 
+
+ 
+
+Now, it's time to commit our change! A commit records the change in the repository compared to its previous state. But before that we must configure the git user who will be the owner of the commit.
+
+Set git username as sarah and user email as sarah@example.com using the below commands.
+
+ 
+
+git config user.email sarah@example.com
+
+ 
+
+git config user.name sarah
+
+ 
+
+Let's commit our change! In this case, we didn't have any previous commits,
+
+so the addition of the file lion-and-mouse.txt is a change compared to its previous state.
+
+Commit the files that are currently in the staging area.
+
+First check the status of the file using the command git status. Then commit using the commit message as Added the lion and mouse story
+
+git commit -m "Added the lion and mouse story"
+
+ 
+
+Sarah created a new file named notes.txt where she plans to write down ideas about the story for personal purposes. She does not want git to track this file or share it with her team mates.
+
+What is the current status of the notes.txt file?
+
+untracked
+
+ 
+
+it is good that the file is untracked. But it is still under GIT's radar. If you run the "git add ." command accidentally git will start to track this file.
+
+Let's configure git to ignore this file permanently.
+
+echo notes.txt >> .gitignore
+
+ 
+
+What's the status of the file notes.txt now in the git status command's output.
+
+git status
+
+not at all listed
+
+ 
+
+ 
+
+Git Log lab
+
+We have initialised git repo in /home/sarah/story-blog. Check git log command output in that directory
+
+Simply run cd /home/sarah/story-blog; git log
+
+As we haven't commited any file yet it should show message fatal: your current branch 'master' does not have any commits yet . So lets commit some file in next step.
+
+ 
+
+Sarah has written a story lion-and-mouse.txt under /home/sarah/story-blog/. Please commit it to local git repo
+
+Add commit message: Added the lion and mouse story
+
+sarah $ git add lion-and-mouse.txt
+
+sarah $ git commit -m "Added the lion and mouse story"
+
+ 
+
+We have committed lion-and-mouse.txt file in git repo /home/sarah/story-blog. Check git log command output in that directory
+
+Based on the output of the command please answer the next questions
+
+ 
+
+Which info is not displayed in git log?
+
+lis of changed files
+
+ 
+
+You can list the changed files as well using the --name-only option with the git log command
+
+Run the command git log --name-only
+
+ 
+
+Which branch has the changes been committed to?
+
+Branch info can be seen in first line of git log output where (HEAD -> {BRANCH_NAME} ) is displayed.
+
+ 
+
+Who is the Author of the commit in git repo?
+
+ 
+
+Another user has committed a new file to the repository now. Identify the user and the new file that was added.
+
+Commit message: Added a new story.
+
+Use the --name-only option to view the files as well
+
+ 
+
+What is the option for git log command to display the logs in compact way (one log per line)?
+
+If not sure try each one.
+
+git log --oneline
+
+ 
+
+Lab Branches-checkout,push branch
+
+ 
+
+What is a branch in git?
+
+What is the default branch of a git repository?
+
+To which branch is the 🦁 lion-and-mouse.txt 🐭 file committed to in the git repository?
+
+Sarah decides to write a new story - 🐸 The Frogs and Ox 🐂. Let's create and checkout a new branch named story/frogs-and-ox
+
+git checkout -b story/frogs-and-ox
+
+View the output of the git log command and identify the branch to which HEAD is pointing to now.
+
+Max informs Sarah that in her first story there's a typo in the title and needs to be fixed ASAP!
+
+We must go back and fix the story in the master branch. But before we do that, let's commit the new story we have written so far. We don't want to carry our incomplete story to the master branch.
+
+Stage and commit the story with the message Add incomplete frogs-and-ox story
+
+git add frogs-and-ox.txt; git commit -am 'Add incomplete frogs-and-ox story'
+
+Now checkout the master branch.
+
+git checkout master
+
+ 
+
+Let's fix the typo in the lion-and-mouse.txt file. LION 🦁 is mis-spelt as LIOON. Please fix it and then commit the changes.
+
+Commit message: Fix typo in story title
+
+Use vi editor to edit the file and fix the typo. Then run the command git commit -am 'Fix typo in story title'
+
+ 
+
+Great! Now that it's out of the way, let's finish the 🐸 frogs-and-ox 🐂 story. Switch back to the story/frogs-and-ox branch.
+
+git checkout story/frogs-and-ox
+
+ 
+
+Sarah has now finished her story. Check the changes and commit them with the message Completed frogs-and-ox story
+
+Run the command git commit -am 'Completed frogs-and-ox story'
+
+ 
+
+A new git repository is created at the path /home/sarah/website for hosting the story website.
+
+Count the number of branches available in that repository including the master branch.
+
+Change to directory cd /home/sarah/website and run git branch command
+
+ 
+
+Looking at the commit history, try to guess what branch was the feature/signout branch created from?
+
+Checkout branch feature/signout and then use the command git log --graph --decorate to see previous commit history along with the branch they were committed on.
+
+ 
+
+Checkout to directory git checkout feature/signout; git log --graph --decorate
+
+ 
+
+Lab Merge
+
+Let's proceed with where we left off in the previous lab. Sarah's local repository should be available at /home/sarah/story-blog
+
+How many stories are currently available in the master branch?
+
+Run cd /home/sarah/story-blog; git checkout master and then list the files ls
+
+ 
+
+What's the name of the story in the master branch?
+
+lion-and-mouse.txt
+
+ 
+
+How many branches does the repository currently have?
+
+Run git branch
+
+ 
+
+The new story Sarah wrote is in the story/frogs-and-ox branch. It's time to merge the branch and bring it to the master branch.
+
+But before that look at the log of the master and story/frogs-and-ox branches and identify how many commits there have been in the past on each branch.
+
+git log
+
+git checkout story/frogs-and-ox
+
+git log
+
+ 
+
+While in the master branch merge the story/frogs-and-ox branch. If prompted for a commit message leave it to the default and quit the editor.
+
+Run git merge story/frogs-and-ox
+
+Chck git log now and it should show commit message as Merge branch 'story/frogs-and-ox'
+
+ 
+
+Check the log of the master branch and see how many commits are seen now
+
+List the files in the master branch and make sure both the stories are visible.
+
+ 
+
+Lab: remote repositories
+
+Explore the local repository that Sarah has been working on at /home/sarah/story-blog and check the log to see the number of commits.
+
+Run cd /home/sarah/story-blog; git log
+
+ 
+
+How many stories has Sarah written so far?
+
+Count the number of stories in the master branch
+
+How many stories has Sarah written so far?
+
+Count the number of stories in the master branch
+
+ 
+
+Great going Sarah 👏 ! So far Sarah has been working by herself in her own local repository on her laptop. It's time to share her work with the team. Let's push the code to the remote git repository.
+
+ 
+
+Github is awesome! But for the purpose of our lab exercises we will be using the Gitea platform. It is a lighter version of Github. However a lot of basic functions are the same. So it should suffice our needs for practice.
+
+ 
+
+You may access the Gitea web portal by clicking on the Git Portal UI link at the top of your terminal
+
+No one in Sarah's team has created a remote repository yet for this project. So Sarah decides to create one so everyone in the team can collaborate. Let's now create a remote git repository named story-blog in Gitea using the GUI. Click on Git Portal UI to access the UI, login with the below details and create a new repository.
+
+UI login info:
+
+ 
+
+Username: sarah
+
+ 
+
+Password: Sarah_pass123
+
+ 
+
+Repository Name: story-blog
+
+ 
+
+Keep other options default when creating repo
+
+ 
+
+From within the lab environment (terminal) the remote repository is accessible at the URL http://git.example.com. Let's now configure the remote repository for the local repository at /home/sarah/story-blog
+
+Target remote repo URL : http://git.example.com/sarah/story-blog.git
+
+remote repo alias : origin
+
+Note: This URL won't be accessible from your personal laptop as it is only available within the lab environment.
+
+Run cd /home/sarah/story-blog; git remote add origin http://git.example.com/sarah/story-blog.git
+
+ 
+
+Which command can be used to push data to our remote repo?
+
+remote repo alias : origin
+
+remote branch : master
+
+git push origin master
+
+ 
+
+Now push our current stories to the remote git repository we created
+
+Login info:
+
+Username: sarah
+
+Password: Sarah_pass123
+
+remote repo alias : origin
+
+remote branch : master
+
+Simply run git push origin master to push and input login credentials
+
+ 
+
+Looking at the remote repository on Gitea can you identify the total disk space consumed by this repository?
+
+Choose the closest option below
